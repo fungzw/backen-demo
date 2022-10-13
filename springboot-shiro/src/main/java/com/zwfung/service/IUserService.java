@@ -7,4 +7,6 @@ import com.zwfung.entity.User;
  * @author zw fung
  */
 public interface IUserService extends IService<User> {
+
+    User getByUsername(String username);
 }
