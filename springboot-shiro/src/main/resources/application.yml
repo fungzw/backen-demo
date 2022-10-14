@@ -10,3 +10,6 @@ spring:
 shiro:
   loginUrl: /login
 
+logging:
+  level:
+    org.springframework: debug
