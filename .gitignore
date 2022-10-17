@@ -1,3 +1,5 @@
 /.idea/
 /springboot-shiro/springboot-shiro.iml
 /springboot-shiro/target
+/mybatis-demo/target/
+/mybatis-demo/mybatis-demo.iml
