@@ -9,6 +9,7 @@
     <version>1.0.0-SNAPSHOT</version>
     <modules>
         <module>springboot-shiro</module>
+        <module>mybatis-demo</module>
     </modules>
 
     <properties>
