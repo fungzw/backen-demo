@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zwfung.mybatis.mapper.UserMapper">
+    <select id="selectById" resultType="com.zwfung.mybatis.entity.User">
+        SELECT * FROM tb_user
+        <if test="id != null">
+            WHERE id = #{id}
+        </if>
+    </select>
+</mapper>

@@ -26,15 +26,14 @@ public class Demo01Test {
         User query = new User();
         query.setId(1L);
 
+        Connection conn = null;
+        PreparedStatement stmt = null;
+
         try {
-            // 第一步：加载驱动程序
             Class.forName("com.mysql.cj.jdbc.Driver");
+            conn = DriverManager.getConnection(url, userName, password);
 
-            // 第二步：获得数据库的连接
-            Connection conn = DriverManager.getConnection(url, userName, password);
-
-            // 第三步：创建语句并执行
-            PreparedStatement stmt = conn.prepareStatement("select * from tb_user where id = ?");
+            stmt = conn.prepareStatement("select * from tb_user where id = ?");
             stmt.setLong(1, query.getId());
             ResultSet resultSet = stmt.executeQuery();
 
@@ -50,9 +49,6 @@ public class Demo01Test {
                 }
             }
 
-            // 第五步：关闭连接
-            stmt.close();
-
             for (User user : userList) {
                 log.info("查询用户：{}", user);
             }
@@ -60,7 +56,17 @@ public class Demo01Test {
             log.error("sql异常", e);
         } catch (ClassNotFoundException e) {
             log.error("未找到驱动", e);
+        } finally {
+            try {
+                if (null != stmt) {
+                    stmt.close();
+                }
+                if (null != conn) {
+                    conn.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
-
     }
 }
